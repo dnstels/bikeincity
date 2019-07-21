@@ -5,6 +5,7 @@
 import sys
 import geocoder
 from redis import StrictRedis
+from time import time
 
 
 g=geocoder.yandex(sys.argv[1], lang="RU-ru") 
@@ -13,5 +14,5 @@ lng=str(g.lng);
 print g.lat,g.lng
 
 redis=StrictRedis(db=0)
-redis.hset("hmp_"+sys.argv[1],'lng',lng)
-redis.hset("hmp_"+sys.argv[1],'lat',lat)
+redis.hset("hmp_"+sys.argv[1]+str(time()),'lng',lng)
+redis.hset("hmp_"+sys.argv[1]+str(time()),'lat',lat)

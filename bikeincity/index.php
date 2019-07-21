@@ -19,6 +19,37 @@
 		<?php if(file_exists('head_code_'.pathinfo($_SERVER['REQUEST_URI'], PATHINFO_FILENAME).'.php'))
     { include_once 'head_code_'.pathinfo($_SERVER['REQUEST_URI'], PATHINFO_FILENAME).'.php'; } ?>
 		<?php if(file_exists('head_code.php')){ include_once 'head_code.php'; } ?>
+		<style>
+                 input[type='text']{
+        height: 1.6em;
+        width: 60%;
+        padding-right: .8em;
+        border: 2px solid #000;
+        border-top: 2px solid #000;
+        border-bottom: 3px solid #000;
+        font-size: 140%;
+        /* padding-left: 1em; */
+        border-radius: .4em 0 0 .4em;
+
+}
+input[type='submit']{
+        height: 1.9em;
+        border: 2px solid #000;
+        margin: 0;
+        margin-left: -.6em;
+        padding: 0;
+        padding-top: 0;
+        color: #fff;    
+        text-shadow: 1px 1px 0px rgb(105, 102, 102);
+        padding-left: 1em;
+        padding-right: 1em;
+        border-radius: 0 .4em .4em 0;
+        font-size: 140%;
+
+}
+
+
+                </style>
 	</head>
 	<body>
 		<div id="top" class="sm">
@@ -149,9 +180,16 @@
                         </div>
 			<div id="page5" class="divsm3" style="display:none">
 				<h2 class="texth2">Голосуй за появление новых дорожек</h2>
-				<form>
-                                <input type="text" name="addr" align="center"></input>
-                                </form>
+				<form style="margin:0 auto; width:750px; height:40px">
+				<input type="text" name="addr" align="center" id="addr"></input>
+				<input type="submit" value="Голосовать" id="vote_send"></input>
+				</form>
+    <script>
+    $("#vote_send").click(function(){
+      $.get('put_addr_geo.php',{'addr':$('#addr').val()});
+    
+    });
+                                 </script>
 				<div class="sm3-box">
                                    <iframe src="page_gpx.php" frameborder="no" style="width:100%; height:600px"></iframe>
 				</div>
